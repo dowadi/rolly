@@ -37,14 +37,15 @@ class Roll:
         else:
             self.num_die = 1
 
-        if "+" in str_reader[1]:  # Determines presence of a positive modifier
-            str_reader.append(str_reader[1].split("+"))
-            self.roll_bonus = int(str_reader[2][1])  # Roll with a positive modifier
-            self.die_sides = int(str_reader[2][0])  # Number of sides on die
+        if "+" or "-" in str_reader[1]:  # Determines presence of a positive modifier
+            if "+" in str_reader[1]:
+                str_reader.append(str_reader[1].split("+"))
+                self.roll_bonus = int(str_reader[2][1])  # Roll with a positive modifier
 
-        elif "-" in str_reader[1]:  # Determines presence of a negative modifier
-            str_reader.append(str_reader[1].split("-"))
-            self.roll_bonus = 0 - int(str_reader[2][1])  # Roll with a negative modifier
+            elif "-" in str_reader[1]:  # Determines presence of a negative modifier
+                str_reader.append(str_reader[1].split("-"))
+                self.roll_bonus = 0 - int(str_reader[2][1])  # Roll with a negative modifier
+
             self.die_sides = int(str_reader[2][0])  # Number of sides on die
 
         else:  # No roll modifier present
