@@ -9,8 +9,10 @@ if __name__ == "__main__":
 
     rolls = parser.parse_args()  # Parses command line input
 
-
     for key in vars(rolls):
+        roll_total = 0
         for roll in getattr(rolls, key):  # Isolates individual rolls
             result = dice.Roll(roll)
+            roll_total += sum(result.roll_results) + result.roll_bonus
             print("Your {} roll resulted in: {}\nThe individual rolls and bonus modifier were: ({}) + {}".format(roll, sum(result.roll_results) + result.roll_bonus, result.pretty_print(), result.roll_bonus))
+        print("Total of all dice rolls is: {}".format(roll_total))

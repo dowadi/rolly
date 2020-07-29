@@ -1,10 +1,6 @@
 import random
 
 class Roll:
-    num_die = 0
-    die_sides = 0
-    roll_bonus = 0
-    roll_results = []
     def __init__(self, roll_req):
         '''
 
@@ -30,19 +26,24 @@ class Roll:
         IndexError: list index out of range
 
         '''
-        # Reads and separates the incoming roll request
+        self.num_die = 0
+        self.die_sides = 0
+        self.roll_bonus = 0
+        self.roll_results = []
+
+        # Parse the incoming roll request
         str_reader = roll_req.split("d")
         if str_reader[0].isdigit():  # Number of dice to roll
             self.num_die = int(str_reader[0])
         else:
             self.num_die = 1
 
-        if "+" or "-" in str_reader[1]:  # Determines presence of a positive modifier
+        if "+" in str_reader[1] or "-" in str_reader[1]:  # Determines presence of a roll modifier
             if "+" in str_reader[1]:
                 str_reader.append(str_reader[1].split("+"))
                 self.roll_bonus = int(str_reader[2][1])  # Roll with a positive modifier
 
-            elif "-" in str_reader[1]:  # Determines presence of a negative modifier
+            else:  # Determines presence of a negative modifier
                 str_reader.append(str_reader[1].split("-"))
                 self.roll_bonus = 0 - int(str_reader[2][1])  # Roll with a negative modifier
 
