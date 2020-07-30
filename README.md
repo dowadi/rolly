@@ -1,4 +1,4 @@
-# rolly
+# Rolly
 Rolly is a tool that parses command line arguments to simulate dice rolls, and can handle multiple rolls at once.  
 
 e.g. 
