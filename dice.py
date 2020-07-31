@@ -1,35 +1,44 @@
 import random
 
-class Die_Roll:
+
+class DieRoll:
+
+    """
+    Simulates a dice roll, roll_req should be in the format of "#d#±#"
+
+    >>> random.seed(1)
+    >>> roll_req = DieRoll("4d10-2")
+    >>> roll_req.num_die
+    4
+    >>> roll_req.die_sides
+    10
+    >>> roll_req.roll_bonus
+    -2
+    >>> roll_req.die()
+    8
+    >>> roll_req.roll_results
+    [3, 2, 5, 2]
+    >>> roll_req.pretty_print()
+    '3 + 2 + 5 + 2'
+
+    Must separate number of dice and number of die sides with a "d"
+    >>> DieRoll("2e20").num_die
+    Traceback (most recent call last):
+      ...
+    IndexError: list index out of range
+    """
+
     def __init__(self, roll_req):
-        '''
+        """
 
         :param roll_req: The input string formatted, for example, 2d2+1
 
-        >>> random.seed(1)
-        >>> roll_req = Die_Roll("4d10-2")
-        >>> roll_req.num_die
-        4
-        >>> roll_req.die_sides
-        10
-        >>> roll_req.roll_bonus
-        -2
-        >>> roll_req.die()
-        8
-        >>> roll_req.roll_results
-        [3, 2, 5, 2]
-        >>> roll_req.pretty_print()
-        '3 + 2 + 5 + 2'
-        >>> Die_Roll("2e20").num_die
-        Traceback (most recent call last):
-          ...
-        IndexError: list index out of range
-
-        '''
+        """
         self.num_die = 0
         self.die_sides = 0
         self.roll_bonus = 0
         self.roll_results = []
+        self.pretty = []
 
         # Parse the incoming roll request
         str_reader = roll_req.split("d")

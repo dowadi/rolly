@@ -6,13 +6,14 @@ if __name__ == "__main__":
 
     parser.add_argument('die', type=str, nargs='+', help='a die to roll')
     parser.add_argument('--version', action='version', version='%(prog)s 0.2')
+    # Pretty print flag to print individual rolls
     parser.add_argument('-p', '--pretty', action="store_true", help='display individual rolls')
 
     rolls = parser.parse_args()  # Parses command line input
 
     rolls_total = 0
     for die in rolls.die:  # Isolates individual rolls
-        roll_result = dice.Die_Roll(die)
+        roll_result = dice.DieRoll(die)
         rolls_total += sum(roll_result.roll_results) + roll_result.roll_bonus
         print("Your {} roll resulted in: {}".format(die, sum(roll_result.roll_results) + roll_result.roll_bonus))
         if rolls.pretty:  # Checks for pretty print flag
